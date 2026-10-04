@@ -24,7 +24,8 @@ The API key lives only in `backend/.env`; the browser never sees it.
 **Backend**
 ```bash
 cd backend
-python -m venv venv && source venv/bin/activate     # Windows: venv\Scripts\activate
+python -m venv venv 
+venv\Scripts\activate
 pip install -r requirements.txt
 cp .env.example .env                                 # then put your ANTHROPIC_API_KEY in .env
 uvicorn main:app --reload                            # http://localhost:8000/docs
