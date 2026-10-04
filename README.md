@@ -56,6 +56,22 @@ npm run dev                                          # http://localhost:5173
 3. **Summarise:** returns a 1-2 sentence summary.
 4. **Break Down:** returns 3-7 subtasks; add as separate tasks or as a checklist in the parent's description.
 
+## ⚠️ Note on AI features
+
+The four AI features (Describe → Tasks, Suggest Priority, Summarise, Break Down)
+call the Anthropic Claude API, so they need a valid API key to run.
+
+1. Get a key from https://console.anthropic.com
+2. Create `backend/.env` (copy from `backend/.env.example`) and add:
+
+   ANTHROPIC_API_KEY=sk-ant-your-key-here
+
+3. Restart the backend: `uvicorn main:app --reload`
+
+Without a valid key, the AI buttons show an authentication error
+("401 invalid x-api-key"). All other features (create, edit, delete,
+complete, search, filters, dashboard) work without a key.
+
 ## Deployment
 **Backend (Render):** New Web Service → root `backend` → build `pip install -r requirements.txt` → start `uvicorn main:app --host 0.0.0.0 --port $PORT`. Set `ANTHROPIC_API_KEY` and `FRONTEND_ORIGINS=https://your-app.vercel.app`. (Free-tier SQLite resets on redeploy; use a persistent disk or Postgres for real use. Railway works the same way.)
 **Frontend (Vercel/Netlify):** import repo → root `frontend` → build `npm run build` → output `dist` → set `VITE_API_URL` to the Render URL.
